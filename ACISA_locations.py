@@ -3,6 +3,7 @@ __author__ = 'Kaiqun'
 import os
 import MySQLdb
 
+
 def RetrieveACISA():
 	MySQLInfo = open(os.path.dirname(os.path.realpath(__file__)) + '/Logins/MySQL', 'r').readline()
 	db = MySQLdb.connect(
