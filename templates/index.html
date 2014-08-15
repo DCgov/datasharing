@@ -1,6 +1,7 @@
 {% extends "base.html" %} {% block content %}
 <script>
 function redirectURL() {
+    // loading_indicator_trigger();
     var InACI;
     InACI = document.getElementById("acisa").value;
     var listing = InACI.split(',');
@@ -26,6 +27,7 @@ function redirectURL() {
         returningStr += "&acisa=" + document.getElementById("acisa").value;
     }
     window.location = returningStr;
+    // loading_indicator_trigger();
 }
 
 function redirectURL_inc() {
@@ -145,6 +147,7 @@ $(document).ready(function() {
                                             <button id="btn" class="btn btn-primary" type="button" href="#" onclick="redirectURL();">Download Data</button>
                                         </td>
                                     </tbody>
+                                    <div id="loadhere"></div>
                                 </table>
                                 <hr/>
                                 <p>
