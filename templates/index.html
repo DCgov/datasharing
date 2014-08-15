@@ -44,6 +44,7 @@ $(document).ready(function() {
         var Useragen = $("#inputAgency").val();
         var Usercomm = $("#inputComment").val();
         if (Username == "") {
+            $('html, body').animate({scrollTop: $("#contact").offset().top}, 2000);
             alert("Please fill in your Name.");
             return;
         }
