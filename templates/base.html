@@ -51,6 +51,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        <li><a href="#abtuser">About You</a>
+                        </li>
                         <li><a href="#download">Data Download</a>
                         </li>
                         <li><a href="#dscpt">Description</a>
@@ -66,16 +68,8 @@
                 <!--/.nav-collapse -->
             </div>
         </div>
-        <div class="jumbotron">
-            <h1>DDOT Data Sharing Website</h1>
-            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <p><a class="btn btn-primary btn-lg" role="button">Project Description</a>
-            </p>
-        </div>
         <div class="span12">
-            <span class="anchor" id="download"></span>
-            <h1>SNAPS Data Sharing</h1>
-            <hr/>{% block content %}{% endblock %}
+            {% block content %}{% endblock %}
         </div>
     </div>
 </body>

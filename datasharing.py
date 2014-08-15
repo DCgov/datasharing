@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, make_response, jsonify
+from flask import Flask, render_template, request, make_response, jsonify, url_for
 from SNAPS import SNAPSfileGen
 from ACISA_locations import RetrieveACISA
+from CommentSection import commentInsertion
 
 
 app = Flask(__name__, static_folder = 'static', static_url_path = '')
@@ -26,5 +27,14 @@ def add_numbers():
 	return jsonify(result = RetrieveACISA())
 
 
+@app.route('/goRequest', methods = ['POST'])
+def goRequest():
+	name = request.form['uname']
+	agency = request.form['uagen']
+	comment = request.form['ucomment']
+	#commentInsertion(name, agency, comment)
+	return "OK"
+
+
 if __name__ == '__main__':
-	app.run(host = '0.0.0.0', port = 4567, debug=True)
+	app.run(host = '0.0.0.0', port = 4567, debug = True)

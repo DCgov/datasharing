@@ -1,17 +1,9 @@
 __author__ = 'Kaiqun'
 
-import os
-import MySQLdb
-
+from DatabaseConn import DBConnector
 
 def RetrieveACISA():
-	MySQLInfo = open(os.path.dirname(os.path.realpath(__file__)) + '/Logins/MySQL', 'r').readline()
-	db = MySQLdb.connect(
-		host=MySQLInfo.split('|')[0],
-		user=MySQLInfo.split('|')[1],
-		passwd=MySQLInfo.split('|')[2],
-		db=MySQLInfo.split('|')[3]
-	)
+	db = DBConnector()
 	cur = db.cursor()
 
 	SQLcmd = "SELECT * FROM snaps.SNAPsLocation"

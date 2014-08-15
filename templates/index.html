@@ -5,13 +5,13 @@ function redirectURL() {
     InACI = document.getElementById("acisa").value;
     var listing = InACI.split(',');
     for (var i = 0; i < listing.length; i++) {
-        if (TargetACISAs.indexOf(listing[i]) < 0){
+        if (TargetACISAs.indexOf(listing[i]) < 0) {
             IlliList.push(listing[i]);
         }
     }
     if (IlliList.length > 0) {
         alert("ACISA Nunmbers: '" + IlliList.join() + "' illegal, please double check.");
-        for (var i = 0; i < IlliList.length; i++){
+        for (var i = 0; i < IlliList.length; i++) {
             selectedACISAs.splice(selectedACISAs.indexOf(IlliList[i]), 1);
         }
         IlliList = [];
@@ -38,96 +38,189 @@ function redirectURL_inc() {
     window.location = "Incidents/22stttm=" + jsvar1 + "&endtm=" + jsvar2 + "&kw=" + jsvar3;
 }
 
+$(document).ready(function() {
+    $("#btn_submit").click(function() {
+        var Username = $("#inputUname").val();
+        var Useragen = $("#inputAgency").val();
+        var Usercomm = $("#inputComment").val();
+        if (Username == "") {
+            alert("Please fill in your Name.");
+            return;
+        }
+        if (Useragen == "") {
+            alert("Please fill in your Agency.");
+            return;
+        }
+        if (Usercomm == "") {
+            alert("Please make some comments.");
+            return;
+        }
+        $.post("goRequest", {
+                uname: Username,
+                uagen: Useragen,
+                ucomment: Usercomm
+            },
+            function(data, status) {
+                $("#StopSign").css("display", "none");
+                $("#GoSign").css("display", "block");
+                alert("Thank you for your participation!");
+            });
+    });
+});
 </script>
-<h4 id="two">Data Downloading Options</h4>
-<div class="well">
-    <form class="form-horizontal">
-        <fieldset>
+
+
+<div class="jumbotron">
+    <h1>DDOT Data Sharing Website</h1>
+    <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <p><a href="#dscpt" class="btn btn-primary btn-lg" role="button">Project Description</a>
+    </p>
+</div>
+
+<div class="span12" style="visibility: visible;">
+    <span class="anchor" id="abtuser"></span>
+    <h1>Say Something About Yourself</h1>
+    <hr/>
+    <h4>Who's that stumbling around in the dark? <b>State Your Business</b>:</h4>
+    <div class="well" style="overflow: auto">
+        <form class="form-horizontal">
             <div class="control-group">
+                <label class="control-label" for="inputUname">Name:</label>
                 <div class="controls">
-                    <div class="input-prepend input-group">
-                        <table>
-                            <thead>
-                                <th>Choose Start and End times:</th>
-                                <th>ACISA No.</th>
-                            </thead>
-                            <tbody>
-                                <td style="width: 350px">
-                                    <input type="text" style="width: 300px" name="reservation" id="reservationtime" class="form-control" value="08/01/2013 1:00 PM - 08/01/2013 1:30 PM" class="span4" />
-                                </td>
-                                <td style="width: 250px">
-                                    <input type="text" style="width: 200px" name="acisa" id="acisa" class="input-xlarge uneditable-input" value="" class="span3" onchange="Check()"/>
-                                </td>
-                                <td>
-                                    <button id="btn" class="btn btn-primary" type="button" href="#" onclick="redirectURL();">Download Data</button>
-                                </td>
-                            </tbody>
-                        </table>
+                    <input type="text" class="form-control" id="inputUname" placeholder="Name" name="uname" required="true">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputAgency">Agency:</label>
+                <div class="controls">
+                    <input type="text" class="form-control" id="inputAgency" placeholder="Agency" name="uagen">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputComment">Comments:</label>
+                <div class="controls">
+                    <textarea class="form-control" id="inputComment" rows="10" cols="100%" name="ucomment"></textarea>
+                </div>
+            </div>
+        </form>
+        <button id="btn_submit" class="btn btn-primary" style="margin: 10px;">Submit</button>
+    </div>
+</div>
+
+<div class="span12">
+    <span class="anchor" id="download"></span>
+    <h1>Data Download</h1>
+    <hr/>
+    <div id="StopSign" class="span12" style="display: block;">
+        <div class="well">
+            <h4>
+                Please say hello in the previous section, and you can download the data you wanted.
+            </h4>
+        </div>
+    </div>
+    <div id="GoSign" class="span12" style="display: none;">
+        <h4>Data Downloading Options</h4>
+        <div class="well">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="control-group">
+                        <div class="controls">
+                            <div class="input-prepend input-group">
+                                <table>
+                                    <thead>
+                                        <th>Choose Start and End times:</th>
+                                        <th>ACISA No.</th>
+                                    </thead>
+                                    <tbody>
+                                        <td style="width: 350px">
+                                            <input type="text" style="width: 300px;" name="reservation" id="reservationtime" class="form-control" value="08/01/2013 1:00 PM - 08/01/2013 1:30 PM" class="span4" />
+                                        </td>
+                                        <td style="width: 250px">
+                                            <input type="text" style="width: 200px" name="acisa" id="acisa" class="form-control" value="" class="span3" onchange="Check()" />
+                                        </td>
+                                        <td>
+                                            <button id="btn" class="btn btn-primary" type="button" href="#" onclick="redirectURL();">Download Data</button>
+                                        </td>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <script type="text/javascript">
+            $(document).ready(function() {
+                $('#reservationtime').daterangepicker({
+                    timePicker: true,
+                    timePickerIncrement: 30,
+                    format: 'MM/DD/YYYY h:mm A'
+                }, function(start, end) {
+                    console.log(start.toISOString(), end.toISOString());
+                });
+            });
+            </script>
+        </div>
+    </div>
+    <h4>Map Viewer for ACISAs</h4>
+    <div class="well">
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <div class="controls">
+                        <div id="map-canvas"></div>
                     </div>
                 </div>
-            </div>
-        </fieldset>
-    </form>
+            </fieldset>
+        </form>
+    </div>
 
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#reservationtime').daterangepicker({
-            timePicker: true,
-            timePickerIncrement: 30,
-            format: 'MM/DD/YYYY h:mm A'
-        }, function(start, end) {
-            console.log(start.toISOString(), end.toISOString());
-        });
-    });
-    </script>
 </div>
-<h4>Map Viewer for ACISAs</h4>
-<div class="well">
-    <form class="form-horizontal">
-        <fieldset>
+
+<div class="span12">
+    <span class="anchor" id="dscpt"></span>
+    <h1>Description</h1>
+    <hr/>
+    <div id="descript" class="span12">
+        <div class="well">
+            <h1>
+                Title
+            </h1>
+            <h4>
+                Hi Rakesh, please put some description under this section.
+            </h4>
+        </div>
+    </div>
+</div>
+
+<div class="span12" style="visibility: visible;">
+    <span class="anchor" id="contact"></span>
+    <h1>Contact Us</h1>
+    <hr/>
+    <h4>Who's that stumbling around in the dark? <b>State Your Business</b>:</h4>
+    <div class="well" style="overflow: auto">
+        <form class="form-horizontal">
             <div class="control-group">
+                <label class="control-label" for="inputUname">Name:</label>
                 <div class="controls">
-                    <div id="map-canvas"></div>
+                    <input type="text" id="cnt_inputUname" class="form-control" placeholder="Name" name="uname">
                 </div>
             </div>
-        </fieldset>
-    </form>
-</div>
-
-<span class="anchor" id="dscpt"></span>
-<h1>Description</h1>
-<hr/>
-
-<span class="anchor" id="contact"></span>
-<h1>Contact Us</h1>
-<hr/>
-<h4>Who's that stumbling around in the dark? <b>State Your Business</b>:</h4>
-<div class="well" style="overflow: auto">
-    <form class="form-horizontal">
-        <div class="control-group">
-            <label class="control-label" for="inputUname">Name:</label>
-            <div class="controls">
-                <input type="text" id="inputUname" placeholder="Name">
+            <div class="control-group">
+                <label class="control-label" for="inputAgency">Agency:</label>
+                <div class="controls">
+                    <input type="text" id="cnt_inputAgency" class="form-control" placeholder="Agency" name="uagen">
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="inputAgency">Agency:</label>
-            <div class="controls">
-                <input type="text" id="inputAgency" placeholder="Agency">
+            <div class="control-group">
+                <label class="control-label" for="inputComment">Comments:</label>
+                <div class="controls">
+                    <textarea id="cnt_inputComment" class="form-control" rows="10" cols="100%" name="ucomment"></textarea>
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="inputComment">Comments:</label>
-            <div class="controls">
-                <textarea id="inputComment" rows="10" cols="100%"></textarea>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <button id="btn_submit" type="submit" class="btn btn-primary" style="margin: 10px;">Submit</button>
-            </div>
-        </div>
-    </form>
+        </form>
+        <button id="cnt_btn_submit" class="btn btn-primary" style="margin: 10px;">Submit</button>
+    </div>
 </div>
 
 {% endblock %}
