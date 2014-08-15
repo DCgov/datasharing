@@ -44,7 +44,9 @@ $(document).ready(function() {
         var Useragen = $("#inputAgency").val();
         var Usercomm = $("#inputComment").val();
         if (Username == "") {
-            $('html, body').animate({scrollTop: $("#contact").offset().top}, 2000);
+            $('html, body').animate({
+                scrollTop: $("#contact").offset().top
+            }, 2000);
             alert("Please fill in your Name.");
             return;
         }
@@ -70,7 +72,7 @@ $(document).ready(function() {
 });
 </script>
 
-
+<span class="anchor" id="beginer"></span>
 <div class="jumbotron">
     <h1>DDOT Data Sharing Website</h1>
     <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
@@ -202,7 +204,8 @@ $(document).ready(function() {
     <span class="anchor" id="contact"></span>
     <h1>Contact Us</h1>
     <hr/>
-    <h4>If you have any problems <b>Please contact us:</b></h4>
+    <h4>If you have any problems <b>Please contact us:</b>
+    </h4>
     <div class="well" style="overflow: auto">
         <form class="form-horizontal">
             <div class="control-group">

@@ -11,17 +11,20 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/daterangepicker-bs3.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ url_for('static', filename='css/navbar-fixed-top.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ url_for('static', filename='css/carousel.css') }}" rel="stylesheet" type="text/css" media="all" />
     <style>
     html,
     #map-canvas {
         width: 100%;
         height: 500px;
     }
-    .anchor{
-      display: block;
-      height: 70px; /*same height as header*/
-      margin-top: -70px; /*same height as header*/
-      visibility: hidden;
+    .anchor {
+        display: block;
+        height: 70px;
+        /*same height as header*/
+        margin-top: -70px;
+        /*same height as header*/
+        visibility: hidden;
     }
     </style>
 
@@ -47,7 +50,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#" onclick="$('html, body').animate({scrollTop: $('#').offset().top}, 2000);">DDOT Data Sharing</a>
+                    <a class="navbar-brand" href="#beginer" onclick="$('html, body').animate({scrollTop: $('#beginer').offset().top}, 2000);">DDOT Data Sharing</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -61,12 +64,62 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active" ><a href="">About</a>
+                        <li class="active"><a href="">About</a>
                         </li>
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
             </div>
+        </div>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item next left">
+                    <img src="{{ url_for('static', filename='img/Thomas Jefferson Memorial.jpg') }}" alt="First slide">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>Example headline.</h1>
+                            <p>Note: If you're viewing this page via a
+                                <code>file://</code>URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="{{ url_for('static', filename='img/Washington Monument.jpg') }}" alt="Second slide">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>Another example headline.</h1>
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item active left">
+                    <img src="{{ url_for('static', filename='img/dcsubway.jpg') }}" alt="Third slide">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>One more for good measure.</h1>
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
         </div>
         <div class="span12">
             {% block content %}{% endblock %}
