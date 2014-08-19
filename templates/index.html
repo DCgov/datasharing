@@ -47,7 +47,7 @@ $(document).ready(function() {
         var Usercomm = $("#inputComment").val();
         if (Username == "") {
             $('html, body').animate({
-                scrollTop: $("#contact").offset().top
+                scrollTop: $("#abtuser").offset().top
             }, 2000);
             alert("Please fill in your Name.");
             return;
@@ -78,7 +78,7 @@ $(document).ready(function() {
 <div class="jumbotron">
     <h1>DDOT Data Sharing Website</h1>
     <p>DDOT in 2013 completed the installation of 142 vehicle counting station in DC arterials. The stations collect data every minute in real time and send the information to our Traffic Management Center. All the sensors are located on mid -block and provide speed, volume and occupancy. </p>
-    <p><a href="#dscpt" class="btn btn-primary btn-lg" role="button">Project Description</a>
+    <p><a href="#dscpt" onclick="$('html, body').animate({scrollTop: $('#dscpt').offset().top}, 2000);">Project Description</a>
     </p>
 </div>
 
