@@ -53,10 +53,16 @@ $(document).ready(function() {
             return;
         }
         if (Useragen == "") {
+            $('html, body').animate({
+                scrollTop: $("#abtuser").offset().top
+            }, 2000);
             alert("Please fill in your Agency.");
             return;
         }
         if (Usercomm == "") {
+            $('html, body').animate({
+                scrollTop: $("#abtuser").offset().top
+            }, 2000);
             alert("Please make some comments.");
             return;
         }
