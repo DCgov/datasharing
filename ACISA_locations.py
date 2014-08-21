@@ -3,6 +3,11 @@ __author__ = 'Kaiqun'
 from DatabaseConn import DBConnector
 
 def RetrieveACISA():
+	"""
+
+	This function retrieves all ACISAs
+	@return: list of ACISAs from database
+	"""
 	db = DBConnector()
 	cur = db.cursor()
 

@@ -4,6 +4,14 @@ from datetime import datetime
 from DatabaseConn import DBConnector
 
 def SNAPSfileGen(TimeRange, ACISA=None, laneDir=None, laneNum=None):
+	"""
+
+	@param TimeRange: Time range, represented by the format: '%m/%d/%Y %I:%M %p - %m/%d/%Y %I:%M %p'
+	@param ACISA: A list of ACISAs
+	@param laneDir: lane directions
+	@param laneNum: lane number
+	@return: a CSV formatted plain text
+	"""
 	db = DBConnector()
 	cur = db.cursor()
 

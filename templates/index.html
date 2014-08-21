@@ -1,5 +1,7 @@
 {% extends "base.html" %} {% block content %}
 <script>
+
+// This function handles downloading url generation and final CSV file downloading.
 function redirectURL() {
     // loading_indicator_trigger();
     var InACI;
@@ -41,6 +43,8 @@ function redirectURL_inc() {
 }
 
 $(document).ready(function() {
+
+    // User information checking functions.
     $("#btn_submit").click(function() {
         var Username = $("#inputUname").val();
         var Useragen = $("#inputAgency").val();
