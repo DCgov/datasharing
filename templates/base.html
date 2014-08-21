@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="UTF-8" />
-    <title>DC DOT Traffic Data Sharing </title>
+    <title>DC DOT Traffic Data Sharing</title>
 
 
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -15,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/loading_indicator.css') }}">
     <style>
     html,
+    body {
+        margin-bottom: 0;
+    }
     #map-canvas {
         width: 100%;
         height: 500px;
@@ -27,12 +30,23 @@
         /*same height as header*/
         visibility: hidden;
     }
+    #footer {
+        position: relative;
+        margin-top: 70px;
+        margin-bottom: -30px;
+        height: 300px;
+        background-color: rgb(240, 240, 240);
+        clear: both;
+    }
+    asterisk {
+        color: #FF0000;
+    }
     </style>
 
     <!--<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}"></script>-->
     <!--<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script>-->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/moment.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/daterangepicker.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
@@ -65,12 +79,103 @@
                         <li><a href="#contact" onclick="$('html, body').animate({scrollTop: $('#contact').offset().top}, 2000);">Contact</a>
                         </li>
                     </ul>
-                    </div>
+                </div>
                 <!--/.nav-collapse -->
             </div>
         </div>
         <div class="span12">
             {% block content %}{% endblock %}
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <span class="anchor" id="contact"></span>
+            <h1>If you have any problems <b>Please contact us:</b>
+            </h1>
+            <hr/>
+            <p align="center">Email: <a href="mailto:xxxxxxxx@dc.gov">xxxxxxxx@dc.gov</a>
+            </p>
+            <br>
+            <p align="center">Phone: (xxx)xxx-xxxx</p>
+            <br>
+            <p align="center" style="font-size: 12px">Traffic count stations are subject to regular maintenance due to milling, paving and communication issues which might lead to data inaccuracies. While DDOT tries to maintain highest data accuracy possible, it doesn’t guarantee the accuracy of the data provided.</p>
+        </div>
+    </div>
+
+    <div class="modal fade" id="NoName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">User Information Missing</h4>
+                </div>
+                <div class="modal-body">
+                    User Name is required! Please double check! 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Alright</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="NoAgen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">User Information Missing</h4>
+                </div>
+                <div class="modal-body">
+                    User Agency is required! Please double check! 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Alright</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="NoComm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">User Information Missing</h4>
+                </div>
+                <div class="modal-body">
+                    User Comment is required! Please double check! 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Alright</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="Complete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">User Information submitted! </h4>
+                </div>
+                <div class="modal-body">
+                    Thank you very much for cooperation! Data is now accessible! 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Go Get Data</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>

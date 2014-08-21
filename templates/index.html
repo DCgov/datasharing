@@ -46,24 +46,24 @@ $(document).ready(function() {
         var Useragen = $("#inputAgency").val();
         var Usercomm = $("#inputComment").val();
         if (Username == "") {
+            $('#NoName').modal('toggle');
             $('html, body').animate({
                 scrollTop: $("#abtuser").offset().top
             }, 2000);
-            alert("Please fill in your Name.");
             return;
         }
         if (Useragen == "") {
+            $('#NoAgen').modal('toggle');
             $('html, body').animate({
                 scrollTop: $("#abtuser").offset().top
             }, 2000);
-            alert("Please fill in your Agency.");
             return;
         }
         if (Usercomm == "") {
+            $('#NoComm').modal('toggle');
             $('html, body').animate({
                 scrollTop: $("#abtuser").offset().top
             }, 2000);
-            alert("Please make some comments.");
             return;
         }
         $.post("goRequest", {
@@ -74,7 +74,10 @@ $(document).ready(function() {
             function(data, status) {
                 $("#StopSign").css("display", "none");
                 $("#GoSign").css("display", "block");
-                alert("Thank you for your participation!");
+                $('#Complete').modal('toggle');
+                $('html, body').animate({
+                    scrollTop: $("#download").offset().top
+                }, 1000);
             });
     });
 });
@@ -83,44 +86,49 @@ $(document).ready(function() {
 <span class="anchor" id="beginer"></span>
 <div class="jumbotron">
     <h1>DDOT Data Sharing Website</h1>
-    <p>DDOT in 2013 completed the installation of 142 vehicle counting station in DC arterials. The stations collect data every minute in real time and send the information to our Traffic Management Center. All the sensors are located on mid -block and provide speed, volume and occupancy. </p>
+    <p>DDOT in 2013 completed the installation of 142 vehicle counting station in DC arterials. The stations collect data every minute in real time and send the information to our Traffic Management Center. All the sensors are located on mid -block and provide speed, volume and occupancy.</p>
     <p><a href="#dscpt" class="btn btn-primary btn-lg" role="button" onclick="$('html, body').animate({scrollTop: $('#dscpt').offset().top}, 2000);">Project Description</a>
     </p>
 </div>
 
 <div class="span12" style="visibility: visible;">
     <span class="anchor" id="abtuser"></span>
-    <h1>Please fill in your details </h1>
+    <h1><b>Please fill in your details</b>
+    </h1>
     <hr/>
     <h4>Provide your details about your agency and how you plan to use the data for your work</b>:</h4>
     <div class="well" style="overflow: auto">
         <form class="form-horizontal">
             <div class="control-group">
-                <label class="control-label" for="inputUname">Name:</label>
+                <label class="control-label" for="inputUname">
+                    <asterisk>*</asterisk>Name:</label>
                 <div class="controls">
                     <input type="text" class="form-control" id="inputUname" placeholder="Name" name="uname" required="true">
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputAgency">Agency:</label>
+                <label class="control-label" for="inputAgency">
+                    <asterisk>*</asterisk>Agency:</label>
                 <div class="controls">
                     <input type="text" class="form-control" id="inputAgency" placeholder="Agency" name="uagen">
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputComment">Purpose for downloading data:</label>
+                <label class="control-label" for="inputComment">
+                    <asterisk>*</asterisk>Purpose for downloading data:</label>
                 <div class="controls">
                     <textarea class="form-control" id="inputComment" rows="10" cols="100%" name="ucomment"></textarea>
                 </div>
             </div>
         </form>
-        <button id="btn_submit" class="btn btn-primary" style="margin: 10px;">Submit</button>
+        <button id="btn_submit" class="btn btn-primary" style="margin: 10px;" data-toggle="modal">Submit</button>
     </div>
 </div>
 
 <div class="span12">
     <span class="anchor" id="download"></span>
-    <h1>Data Download</h1>
+    <h1><b>Data Download</b>
+    </h1>
     <hr/>
     <div id="StopSign" class="span12" style="display: block;">
         <div class="well">
@@ -195,7 +203,8 @@ $(document).ready(function() {
 
 <div class="span12">
     <span class="anchor" id="dscpt"></span>
-    <h1>More Information</h1>
+    <h1><b>More Information</b>
+    </h1>
     <hr/>
     <div id="descript" class="span12">
         <div class="well">
@@ -208,38 +217,5 @@ $(document).ready(function() {
         </div>
     </div>
 </div>
-
-<div class="span12" style="visibility: visible;">
-    <span class="anchor" id="contact"></span>
-    <h1>Contact Us</h1>
-    <hr/>
-    <h4>If you have any problems <b>Please contact us:</b>
-    </h4>
-    <div class="well" style="overflow: auto">
-        <form class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label" for="inputUname">Name:</label>
-                <div class="controls">
-                    <input type="text" id="cnt_inputUname" class="form-control" placeholder="Name" name="uname">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="inputAgency">Agency:</label>
-                <div class="controls">
-                    <input type="text" id="cnt_inputAgency" class="form-control" placeholder="Agency" name="uagen">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="inputComment">Comments:</label>
-                <div class="controls">
-                    <textarea id="cnt_inputComment" class="form-control" rows="10" cols="100%" name="ucomment"></textarea>
-                </div>
-            </div>
-        </form>
-        <button id="cnt_btn_submit" class="btn btn-primary" style="margin: 10px;">Submit</button>
-    </div>
-</div>
-
-
 
 {% endblock %}
