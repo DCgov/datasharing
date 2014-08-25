@@ -1,11 +1,17 @@
 {% extends "base.html" %} {% block content %}
 <script>
-
 // This function handles downloading url generation and final CSV file downloading.
 function redirectURL() {
     // loading_indicator_trigger();
     var InACI;
     InACI = document.getElementById("acisa").value;
+    if (InACI == "") {
+        $('#nullacisa').modal('toggle');
+        $('html, body').animate({
+            scrollTop: $("#download").offset().top
+        }, 2000);
+        return;
+    }
     var listing = InACI.split(',');
     for (var i = 0; i < listing.length; i++) {
         if (TargetACISAs.indexOf(listing[i]) < 0) {
@@ -85,6 +91,18 @@ $(document).ready(function() {
             });
     });
 });
+
+function displayTable() {
+    var stl_click = $("#clickingmore");
+    var stl_table = $("#thetable");
+    if (stl_table.css("display") == "block") {
+        stl_table.css("display", "none");
+        stl_click.text("More");
+    } else {
+        stl_table.css("display", "block");
+        stl_click.text("Less");
+    }
+}
 </script>
 
 <span class="anchor" id="beginer"></span>
@@ -100,7 +118,8 @@ $(document).ready(function() {
     <h1><b>Please fill in your details</b>
     </h1>
     <hr/>
-    <h4>Provide your details about your agency and how you plan to use the data for your work. (Fields marked by <asterisk>*</asterisk> are required.)</b>:</h4>
+    <h4>Provide your details about your agency and how you plan to use the data for your work. (Fields marked by
+        <asterisk>*</asterisk>are required.)</b>:</h4>
     <div class="well" style="overflow: auto">
         <form class="form-horizontal">
             <div class="control-group">
@@ -215,11 +234,764 @@ $(document).ready(function() {
             <h1>
                 Traffic Detection Stations
             </h1>
+            <a onclick="displayTable();">
+                <p id="clickingmore">More</p>
+            </a>
+            <table id="thetable" style="display: none;" class="table table-striped">
+                <thead>
+                    <th>No.</th>
+                    <th>Location</th>
+                    <th>ACISA No.</th>
+                </thead>
+                <tr>
+                    <td>1</td>
+                    <td>12th St bet Constitution Ave and Independence Ave, N.W.</td>
+                    <td>1006</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Constitution Ave bet 12th St and 14th St, N.W.</td>
+                    <td>1008</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>14th St bet F St and G St, N.W.</td>
+                    <td>1012</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>L St bet 13th St and 14th St, N.W.</td>
+                    <td>1017</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>17th St bet Constitution Ave and C St, N.W.</td>
+                    <td>1065</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>U St bet 17th St and 18th St, N.W.</td>
+                    <td>1083</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>New Hampshire Ave bet 18th St and Massachusetts Ave, N.W.</td>
+                    <td>1099</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Constitution Ave bet 19th St and 20th St, N.W. (WB)</td>
+                    <td>1104</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>E St (North) bet 19th St and 20th St, N.W.</td>
+                    <td>1106</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Constitution Ave bet 19th St and 20th St, N.W. (EB)</td>
+                    <td>1117</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>E St (South) bet 19th St and 20th St, N.W.</td>
+                    <td>1118</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Pennsylvania Ave bet 19th St and 20th St, N.W.</td>
+                    <td>1129</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Constitution Ave bet 22nd St and 23rd St, N.W.</td>
+                    <td>1146</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Massachusetts Ave bet 22nd St, Florida Ave and 23rd St, N.W</td>
+                    <td>1153</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>P St bet Rock Creek Pkwy and 23rd St, N.W</td>
+                    <td>1163</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>K St bet 25th St and 26th St, N.W.</td>
+                    <td>1169</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Connecticut Ave bet L St and K St, N.W.</td>
+                    <td>1176</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Connecticut Ave bet T St and Florida Ave, N.W.</td>
+                    <td>1179</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Virginia Ave bet New Hampshire Ave and 24th St, N.W.</td>
+                    <td>1187</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>7th St bet E/B Ramp to SW Frwy and Frontage Rd, S.W.</td>
+                    <td>1210</td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>Independence Ave bet Ohio Dr and Daniel French Dr, SW</td>
+                    <td>1227</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>K St bet Whitehurst Frwy and 27th St and M St, N.W.</td>
+                    <td>1237</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td>3rd St bet Madison Dr and Pennsylvania Ave, N.W.</td>
+                    <td>2022</td>
+                </tr>
+                <tr>
+                    <td>24</td>
+                    <td>E St bet 6th St and 7th St, N.W.</td>
+                    <td>2041</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>6th St bet G St and G Pl, N.W.</td>
+                    <td>2043</td>
+                </tr>
+                <tr>
+                    <td>26</td>
+                    <td>H St bet 9th St and 11th St, N.W.</td>
+                    <td>2090</td>
+                </tr>
+                <tr>
+                    <td>27</td>
+                    <td>Mass Ave bet 9th St and 11th St, N.W.</td>
+                    <td>2095</td>
+                </tr>
+                <tr>
+                    <td>28</td>
+                    <td>12th St bet H St and New York Ave, N.W.</td>
+                    <td>2120</td>
+                </tr>
+                <tr>
+                    <td>29</td>
+                    <td>New York Ave bet 12th St and 13th St, N.W.</td>
+                    <td>2135</td>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td>Vermont Ave bet V St and U St, N.W.</td>
+                    <td>2156</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>U St bet 9th St and Vermont Ave, N.W.</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>31</td>
+                    <td>K St bet North Capitol St and 1st St, N.E.</td>
+                    <td>2161</td>
+                </tr>
+                <tr>
+                    <td>32</td>
+                    <td>M St bet 3rd St and 5th St, S.W.</td>
+                    <td>2193</td>
+                </tr>
+                <tr>
+                    <td>33</td>
+                    <td>South Capitol St bet I St and Southwest Frwy</td>
+                    <td>2226</td>
+                </tr>
+                <tr>
+                    <td>34</td>
+                    <td>North Capitol St bet Massachusetts Ave and G Pl, N.E.</td>
+                    <td>2250</td>
+                </tr>
+                <tr>
+                    <td>35</td>
+                    <td>7th St bet R St and T St, N.W.</td>
+                    <td>3026</td>
+                </tr>
+                <tr>
+                    <td>36</td>
+                    <td>New Jersey Ave bet Rhode Island Ave and R St, N.W.</td>
+                    <td>3028</td>
+                </tr>
+                <tr>
+                    <td>37</td>
+                    <td>Rhode Island Ave bet Summit Pl and North Capitol St, N.E.</td>
+                    <td>3035</td>
+                </tr>
+                <tr>
+                    <td>38</td>
+                    <td>North Capitol St bet Florida Ave and P St</td>
+                    <td>3037</td>
+                </tr>
+                <tr>
+                    <td>39</td>
+                    <td>Mass. Ave bet 2nd St and D St, N.E.</td>
+                    <td>3050</td>
+                </tr>
+                <tr>
+                    <td>40</td>
+                    <td>H St bet 3rd St and 4th St, N.E.</td>
+                    <td>3052</td>
+                </tr>
+                <tr>
+                    <td>41</td>
+                    <td>Constitution Ave bet 3rd St and 5th St, N.E.</td>
+                    <td>3056</td>
+                </tr>
+                <tr>
+                    <td>42</td>
+                    <td>Maryland Ave bet 10th St and 11th St, N.E.</td>
+                    <td>3097</td>
+                </tr>
+                <tr>
+                    <td>43</td>
+                    <td>Florida Ave bet 11th St and 13th St, N.E.</td>
+                    <td>3099</td>
+                </tr>
+                <tr>
+                    <td>44</td>
+                    <td>North Carolina Ave bet 14th St and 16th St, N.E.</td>
+                    <td>3115</td>
+                </tr>
+                <tr>
+                    <td>45</td>
+                    <td>Benning Rd bet 18th St and 19th St, N.E.</td>
+                    <td>3129</td>
+                </tr>
+                <tr>
+                    <td>46</td>
+                    <td>Bladensburg Rd bet Earl Pl. and 35th St, N.E.</td>
+                    <td>3140</td>
+                </tr>
+                <tr>
+                    <td>47</td>
+                    <td>Michigan Ave bet Webster St and Eastern Ave, N.E.</td>
+                    <td>3164</td>
+                </tr>
+                <tr>
+                    <td>48</td>
+                    <td>Mt. Olivet Rd bet Montello Ave and Corcoran St, N.E.</td>
+                    <td>3177</td>
+                </tr>
+                <tr>
+                    <td>49</td>
+                    <td>New York Ave bet Florida Ave and Brentwood Pkwy, N.E.</td>
+                    <td>3178</td>
+                </tr>
+                <tr>
+                    <td>50</td>
+                    <td>New York Ave bet Montana Ave and South Dakota Ave, N.E.</td>
+                    <td>3180</td>
+                </tr>
+                <tr>
+                    <td>51</td>
+                    <td>Rhode Island Ave bet Brentwood Rd and 15th St, N.E.</td>
+                    <td>3189</td>
+                </tr>
+                <tr>
+                    <td>52</td>
+                    <td>Sargent Rd bet and Eastern Ave. and Galloway St, N.E.</td>
+                    <td>3198</td>
+                </tr>
+                <tr>
+                    <td>53</td>
+                    <td>South Dakota Ave bet 8th St and 11th St, N.E.</td>
+                    <td>3206</td>
+                </tr>
+                <tr>
+                    <td>54</td>
+                    <td>South Dakota Ave bet 22nd St and Lawrence St, N.E.</td>
+                    <td>3210</td>
+                </tr>
+                <tr>
+                    <td>55</td>
+                    <td>East Capitol St bet 18th St and 22nd St</td>
+                    <td>3224</td>
+                </tr>
+                <tr>
+                    <td>56</td>
+                    <td>Michigan Ave bet 4th St and Monroe St, N.E.</td>
+                    <td>3231</td>
+                </tr>
+                <tr>
+                    <td>57</td>
+                    <td>Pennsylvania Ave bet Constitution Ave and 7th St, S.E.</td>
+                    <td>4018</td>
+                </tr>
+                <tr>
+                    <td>58</td>
+                    <td>Independence Ave bet 19th St and RFK Stadium, S.E.</td>
+                    <td>4055</td>
+                </tr>
+                <tr>
+                    <td>59</td>
+                    <td>East Capitol St bet 3rd St and 5th St</td>
+                    <td>4063</td>
+                </tr>
+                <tr>
+                    <td>60</td>
+                    <td>N.H. Burroughs Ave bet 44th St and Minnesota Ave, N.E.</td>
+                    <td>4073</td>
+                </tr>
+                <tr>
+                    <td>61</td>
+                    <td>Sheriff Rd bet 45th St and 49th Pl, N.E.</td>
+                    <td>4085</td>
+                </tr>
+                <tr>
+                    <td>62</td>
+                    <td>Branch Ave bet Southern Ave and Frankford St, S.E.</td>
+                    <td>4103</td>
+                </tr>
+                <tr>
+                    <td>63</td>
+                    <td>Alabama Ave bet Wheeler Rd and 7th St, S.E.</td>
+                    <td>4105</td>
+                </tr>
+                <tr>
+                    <td>64</td>
+                    <td>Benning Rd bet Hillside Rd and Hanna Pl, S.E.</td>
+                    <td>4112</td>
+                </tr>
+                <tr>
+                    <td>65</td>
+                    <td>Good Hope Rd bet Minnesota Ave and 16th, S.E.</td>
+                    <td>4119</td>
+                </tr>
+                <tr>
+                    <td>66</td>
+                    <td>Martin Luther King Jr. Ave bet Randle Pl and Malcolm X Ave, S.E</td>
+                    <td>4126</td>
+                </tr>
+                <tr>
+                    <td>67</td>
+                    <td>Martin Luther King Jr. Ave bet Sterling St and Highview Pl, S.E.</td>
+                    <td>4130</td>
+                </tr>
+                <tr>
+                    <td>68</td>
+                    <td>Martin Luther King Jr Ave bet W St and Pleasant St, S.E</td>
+                    <td>4131</td>
+                </tr>
+                <tr>
+                    <td>69</td>
+                    <td>Minnesota Ave bet Randle Cir and 31st St, S.E.</td>
+                    <td>4137</td>
+                </tr>
+                <tr>
+                    <td>70</td>
+                    <td>Pennsylvania Ave bet 29th St and 30th St, S.E.</td>
+                    <td>4142</td>
+                </tr>
+                <tr>
+                    <td>71</td>
+                    <td>23rd St bet Southern Ave and Savannah St, S.E.</td>
+                    <td>4150</td>
+                </tr>
+                <tr>
+                    <td>72</td>
+                    <td>Central Ave bet Southern Ave and 56th St, S.E.</td>
+                    <td>4152</td>
+                </tr>
+                <tr>
+                    <td>73</td>
+                    <td>Chesapeake St bet 8th St and Southern Ave, S.E.</td>
+                    <td>4153</td>
+                </tr>
+                <tr>
+                    <td>74</td>
+                    <td>Suitland Rd bet Southern Ave and 38th St, S.E.</td>
+                    <td>4157</td>
+                </tr>
+                <tr>
+                    <td>75</td>
+                    <td>Wheeler Rd bet Southern Ave and Bellevue St, S.E.</td>
+                    <td>4165</td>
+                </tr>
+                <tr>
+                    <td>76</td>
+                    <td>East Capitol St bet 57th St and 60th St, S.E.</td>
+                    <td>4177</td>
+                </tr>
+                <tr>
+                    <td>77</td>
+                    <td>Benning Rd bet 44th St N.E. and East Capitol St.</td>
+                    <td>4178</td>
+                </tr>
+                <tr>
+                    <td>78</td>
+                    <td>Howard Rd bet South Capitol St and Firth Sterling Ave, S.E</td>
+                    <td>4121</td>
+                </tr>
+                <tr>
+                    <td>79</td>
+                    <td>South Capitol St bet Livingston Rd S.E. and 1st St, S.W.</td>
+                    <td>4189</td>
+                </tr>
+                <tr>
+                    <td>80</td>
+                    <td>Irving St bet North Capitol St and Kenyon St, N.W.</td>
+                    <td>5002</td>
+                </tr>
+                <tr>
+                    <td>81</td>
+                    <td>Florida Ave bet 10th St and 11th St, N.W.</td>
+                    <td>5025</td>
+                </tr>
+                <tr>
+                    <td>82</td>
+                    <td>13th St bet Clifton St and Fairmont St, N.W.</td>
+                    <td>5035</td>
+                </tr>
+                <tr>
+                    <td>83</td>
+                    <td>13th St bet Jefferson St and Longfellow St, NW</td>
+                    <td>5043</td>
+                </tr>
+                <tr>
+                    <td>84</td>
+                    <td>14th St bet Euclid St and Fairmont St, N.W.</td>
+                    <td>5057</td>
+                </tr>
+                <tr>
+                    <td>85</td>
+                    <td>16th St bet Kalorama Rd and Fuller St, N.W.</td>
+                    <td>5088</td>
+                </tr>
+                <tr>
+                    <td>86</td>
+                    <td>Florida Ave bet 16th St and 17th St, N.W.</td>
+                    <td>5089</td>
+                </tr>
+                <tr>
+                    <td>87</td>
+                    <td>16th St bet Colorado Ave and Longfellow St, N.W.</td>
+                    <td>5095</td>
+                </tr>
+                <tr>
+                    <td>88</td>
+                    <td>Georgia Ave bet Hobart Pl and Gresham Pl, N.W.</td>
+                    <td>5130</td>
+                </tr>
+                <tr>
+                    <td>89</td>
+                    <td>Georgia Ave bet Underwood St and Sheridan St, N.W.</td>
+                    <td>5142</td>
+                </tr>
+                <tr>
+                    <td>90</td>
+                    <td>New Hampshire Ave bet Grant Cir and Allison St, N.W.</td>
+                    <td>5159</td>
+                </tr>
+                <tr>
+                    <td>91</td>
+                    <td>Piney Branch Rd bet Blair Rd and Eastern Ave, N.W.</td>
+                    <td>5162</td>
+                </tr>
+                <tr>
+                    <td>92</td>
+                    <td>Sherman Ave bet Euclid St and Barry Pl N.W.</td>
+                    <td>5169</td>
+                </tr>
+                <tr>
+                    <td>93</td>
+                    <td>Riggs Rd bet South Dakota Ave and 1st St, N.E.</td>
+                    <td>5186</td>
+                </tr>
+                <tr>
+                    <td>94</td>
+                    <td>Kansas Ave bet Chillum Pl and Sheridan St N.E</td>
+                    <td>5198</td>
+                </tr>
+                <tr>
+                    <td>95</td>
+                    <td>Military Rd bet Oregon Ave and 27th St NW</td>
+                    <td>6006</td>
+                </tr>
+                <tr>
+                    <td>96</td>
+                    <td>M St bet Wisconsin Ave and 31st St, N.W.</td>
+                    <td>6142</td>
+                </tr>
+                <tr>
+                    <td>97</td>
+                    <td>Massachusetts Ave bet 48th St and Yuma St, N.W.</td>
+                    <td>6051</td>
+                </tr>
+                <tr>
+                    <td>98</td>
+                    <td>Connecticut Ave bet Chesapeake St and Brandywine St, N.W.</td>
+                    <td>6063</td>
+                </tr>
+                <tr>
+                    <td>99</td>
+                    <td>Connecticut Ave bet Macomb and Ordway St, N.W.</td>
+                    <td>6072</td>
+                </tr>
+                <tr>
+                    <td>100</td>
+                    <td>Foxhall Rd bet Garfield St and Fulton St, N.W.</td>
+                    <td>6089</td>
+                </tr>
+                <tr>
+                    <td>101</td>
+                    <td>MacArthur Blvd NW bet Watson St and Little Falls Rd, N.W.</td>
+                    <td>6097</td>
+                </tr>
+                <tr>
+                    <td>102</td>
+                    <td>Reservoir Rd bet MacArthur Blvd and 47th St, N.W</td>
+                    <td>6099</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>MacArthur Blvd bet Reservoir Rd and 47th Pl, NW</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>103</td>
+                    <td>Nebraska Ave bet Nevada Ave and Ingomar Pl, N.W.</td>
+                    <td>6115</td>
+                </tr>
+                <tr>
+                    <td>104</td>
+                    <td>Reno Rd bet Upton St and Veazey St, N.W.</td>
+                    <td>6125</td>
+                </tr>
+                <tr>
+                    <td>105</td>
+                    <td>River Rd bet 46th St and Western Ave, N.W.</td>
+                    <td>6128</td>
+                </tr>
+                <tr>
+                    <td>106</td>
+                    <td>Wisconsin Ave bet Massachusetts Ave and Garfield St, N.W.</td>
+                    <td>6144</td>
+                </tr>
+                <tr>
+                    <td>107</td>
+                    <td>Wisconsin Ave bet P St and Q St, N.W.</td>
+                    <td>6147</td>
+                </tr>
+                <tr>
+                    <td>108</td>
+                    <td>Wisconsin Ave bet Warren St and Van Ness St, N.W.</td>
+                    <td>6152</td>
+                </tr>
+                <tr>
+                    <td>109</td>
+                    <td>7th St bet G St and H St, N.W.</td>
+                    <td>2057</td>
+                </tr>
+                <tr>
+                    <td>110</td>
+                    <td>Independence Ave bet 6th St and 7th St, S.W.</td>
+                    <td>1208</td>
+                </tr>
+                <tr>
+                    <td>111</td>
+                    <td>Pennsylvania Ave bet 6th St and 9th St, N.W.</td>
+                    <td>2066</td>
+                </tr>
+                <tr>
+                    <td>112</td>
+                    <td>14th St bet R St and S St, N.W.</td>
+                    <td>1025</td>
+                </tr>
+                <tr>
+                    <td>113</td>
+                    <td>15th St bet Lower E St/Pennsylvania Ave and Constitution Ave, N.W.</td>
+                    <td>1031</td>
+                </tr>
+                <tr>
+                    <td>114</td>
+                    <td>19th St bet L St and K St, N.W</td>
+                    <td>1112</td>
+                </tr>
+                <tr>
+                    <td>115</td>
+                    <td>23rd St bet I St and Washington Circle, N.W</td>
+                    <td>1159</td>
+                </tr>
+                <tr>
+                    <td>116</td>
+                    <td>3rd St on-ramp to I-395 SB, N.W.</td>
+                    <td>2020</td>
+                </tr>
+                <tr>
+                    <td>117</td>
+                    <td>9th St bet Pennsylvania Ave. and Constitution Ave, N.W</td>
+                    <td>2037</td>
+                </tr>
+                <tr>
+                    <td>118</td>
+                    <td>U St bet 9th St and Vermont Ave, N.W</td>
+                    <td>2156</td>
+                </tr>
+                <tr>
+                    <td>119</td>
+                    <td>M St bet ISAAC Hull Ave and 8th St, S.E</td>
+                    <td>2249</td>
+                </tr>
+                <tr>
+                    <td>120</td>
+                    <td>Bowen Rd bet Ridge Rd and Burns St, S.E.</td>
+                    <td>4149</td>
+                </tr>
+                <tr>
+                    <td>121</td>
+                    <td>Suitland Pkwy and Stanton Rd, S.E.</td>
+                    <td>4196</td>
+                </tr>
+                <tr>
+                    <td>122</td>
+                    <td>Minnesota Ave bet S St and T St, S.E.</td>
+                    <td>4229</td>
+                </tr>
+                <tr>
+                    <td>123</td>
+                    <td>Connecticut Ave bet Legation St and Morrison St, NW</td>
+                    <td>6071</td>
+                </tr>
+                <tr>
+                    <td>124</td>
+                    <td>Connecticut Ave and Fessenden St, NW</td>
+                    <td>6068</td>
+                </tr>
+                <tr>
+                    <td>125</td>
+                    <td>Connecticut Ave bet Brandywine St and Yuma St, NW</td>
+                    <td>6062</td>
+                </tr>
+                <tr>
+                    <td>126</td>
+                    <td>Connecticut Ave bet Van Ness St and Windom Pl, NW</td>
+                    <td>6083</td>
+                </tr>
+                <tr>
+                    <td>127</td>
+                    <td>Connecticut Avenue bet Sedgwick St and Van Ness St, NW</td>
+                    <td>6081</td>
+                </tr>
+                <tr>
+                    <td>128</td>
+                    <td>Connecticut Ave bet Hawthorne St and Devonshire Pl, NW</td>
+                    <td>6087</td>
+                </tr>
+                <tr>
+                    <td>129</td>
+                    <td>Connecticut Ave bet Woodley Rd and Garfield St, NW</td>
+                    <td>6084</td>
+                </tr>
+                <tr>
+                    <td>130</td>
+                    <td>Connecticut Ave bet Belmont Rd and Wyoming Ave, NW</td>
+                    <td>1181</td>
+                </tr>
+                <tr>
+                    <td>131</td>
+                    <td>Connecticut Avenue bet Q St & S Street, NW</td>
+                    <td>1116 & 1144</td>
+                </tr>
+                <tr>
+                    <td>132</td>
+                    <td>New York Ave bet 9th St and 11th St, NW</td>
+                    <td>2096</td>
+                </tr>
+                <tr>
+                    <td>133</td>
+                    <td>New York Ave bet 5th St and 7th St, NW</td>
+                    <td>2047</td>
+                </tr>
+                <tr>
+                    <td>134</td>
+                    <td>New York Ave bet First St and Kirby St, NW</td>
+                    <td>3002</td>
+                </tr>
+                <tr>
+                    <td>135</td>
+                    <td>New York Ave bet 1st St NE and N St NW</td>
+                    <td>3039</td>
+                </tr>
+                <tr>
+                    <td>136</td>
+                    <td>New York Ave and Kendall St, NE</td>
+                    <td>3183</td>
+                </tr>
+                <tr>
+                    <td>137</td>
+                    <td>New York Ave and 16th St, NE</td>
+                    <td>3179</td>
+                </tr>
+                <tr>
+                    <td>138</td>
+                    <td>Reservoir Rd bet 37th St and 39th St , NW</td>
+                    <td>6034</td>
+                </tr>
+                <tr>
+                    <td>139</td>
+                    <td>14th St bet Irving St and Monroe St, NW</td>
+                    <td>5067</td>
+                </tr>
+                <tr>
+                    <td>140</td>
+                    <td>Nannie Helen Burroughs Ave bet Jay St, NE and 58th St, NE</td>
+                    <td>4076</td>
+                </tr>
+                <tr>
+                    <td>141</td>
+                    <td>Naylor Rd bet 28th St and Southern Ave, SE</td>
+                    <td>4139</td>
+                </tr>
+                <tr>
+                    <td>142</td>
+                    <td>H St bet N. Capitol St and First St, NW</td>
+                    <td>2006</td>
+                </tr>
+                <tbody>
+                </tbody>
+            </table>
             <h4>
-
             </h4>
         </div>
     </div>
 </div>
+
+<div class="span12">
+    <span class="anchor" id="contact"></span>
+    <h1><b>Contact Us</b>
+    </h1>
+    <hr/>
+    <div id="descript" class="span12">
+        <div class="well">
+            <h2>
+                If you have any problems <b>Please contact us:</b>
+            </h2>
+            <h4 align="center">Email: <a href="mailto:xxxxxxxx@dc.gov">xxxxxxxx@dc.gov</a>
+            </h4>
+            <h4 align="center">Phone: (xxx)xxx-xxxx</h4>
+            <h2>
+                Disclaimer:
+            </h2>
+            <p align="center" style="font-size: 12px">Traffic count stations are subject to regular maintenance due to milling, paving and communication issues which might lead to data inaccuracies. While DDOT tries to maintain highest data accuracy possible, it doesn’t guarantee the accuracy of the data provided.</p>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}

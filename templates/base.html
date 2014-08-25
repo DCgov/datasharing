@@ -87,7 +87,7 @@
             {% block content %}{% endblock %}
         </div>
     </div>
-    <div id="footer">
+    <!-- <div id="footer">
         <div class="container">
             <span class="anchor" id="contact"></span>
             <h1>If you have any problems <b>Please contact us:</b>
@@ -100,7 +100,7 @@
             <br>
             <p align="center" style="font-size: 12px">Traffic count stations are subject to regular maintenance due to milling, paving and communication issues which might lead to data inaccuracies. While DDOT tries to maintain highest data accuracy possible, it doesn’t guarantee the accuracy of the data provided.</p>
         </div>
-    </div>
+    </div> -->
 
     <!-- Triggers if the user doesn't input his name -->
     <div class="modal fade" id="NoName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -181,6 +181,27 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Go Get Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Triggers if the Acisa list is inputted null. -->
+    <div class="modal fade" id="nullacisa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Illegal ACISAs input! </h4>
+                </div>
+                <div class="modal-body">
+                    Please input a list of required ACISAs.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Select ACISAs</button>
                 </div>
             </div>
         </div>

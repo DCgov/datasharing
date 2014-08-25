@@ -249,12 +249,10 @@ function Check() {
     var instr = document.getElementById("acisa").value;
     if (instr == "") {
         selectedACISAs = [];
-        console.log(selectedACISAs);
         return;
     }
     var tempList = instr.split(',');
     selectedACISAs = tempList;
-    console.log(selectedACISAs);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
