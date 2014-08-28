@@ -107,132 +107,25 @@ function displayTable() {
 
 <span class="anchor" id="beginer"></span>
 <div class="jumbotron">
-    <h1>DDOT Data Sharing Website</h1>
-    <p>DDOT in 2013 completed the installation of 142 vehicle counting station in DC arterials. The stations collect data every minute in real time and send the information to our Traffic Management Center. All the sensors are located on mid -block and provide speed, volume and occupancy.</p>
+    <h1>Traffic Sensors Data Sharing Website</h1>
+    <p>Washington DC is one of most important cities in the nation.District of Columbia also called the District is spread over an area of 68.3 sq miles with a population of 633,000 and
+        increasing with 1100 people moving every single day to the District Washington Metro area has a total population of 5.7 million. District Department of Transportation which takes care
+        of the District transportation needs installed traffic sensors at various locations in city to monitor real time traffic. DDOT enables citizens to download traffic data collected from the sensors.
+    </p>
     <p><a href="#dscpt" class="btn btn-primary btn-lg" role="button" onclick="$('html, body').animate({scrollTop: $('#dscpt').offset().top}, 2000);">Project Description</a>
     </p>
 </div>
 
-<div class="span12" style="visibility: visible;">
-    <span class="anchor" id="abtuser"></span>
-    <h1><b>Please fill in your details</b>
-    </h1>
-    <hr/>
-    <h4>Provide your details about your agency and how you plan to use the data for your work. (Fields marked by
-        <asterisk>*</asterisk>are required.)</b>:</h4>
-    <div class="well" style="overflow: auto">
-        <form class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label" for="inputUname">
-                    <asterisk>*</asterisk>Name:</label>
-                <div class="controls">
-                    <input type="text" class="form-control" id="inputUname" placeholder="Name" name="uname" required="true">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="inputAgency">
-                    <asterisk>*</asterisk>Agency:</label>
-                <div class="controls">
-                    <input type="text" class="form-control" id="inputAgency" placeholder="Agency" name="uagen">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="inputComment">
-                    <asterisk>*</asterisk>Purpose for downloading data:</label>
-                <div class="controls">
-                    <textarea class="form-control" id="inputComment" rows="10" cols="100%" name="ucomment"></textarea>
-                </div>
-            </div>
-        </form>
-        <button id="btn_submit" class="btn btn-primary" style="margin: 10px;" data-toggle="modal">Submit</button>
-    </div>
-</div>
-
-<div class="span12">
-    <span class="anchor" id="download"></span>
-    <h1><b>Data Download</b>
-    </h1>
-    <hr/>
-    <div id="StopSign" class="span12" style="display: block;">
-        <div class="well">
-            <h4>
-                The data form is available upon filling details in above section.
-            </h4>
-        </div>
-    </div>
-    <div id="GoSign" class="span12" style="display: none;">
-        <h4>Data Downloading Options</h4>
-        <div class="well">
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="control-group">
-                        <div class="controls">
-                            <div class="input-prepend input-group">
-                                <table>
-                                    <thead>
-                                        <th>Choose Start and End times:</th>
-                                        <th>ACISA No.</th>
-                                    </thead>
-                                    <tbody>
-                                        <td style="width: 350px">
-                                            <input type="text" style="width: 300px;" name="reservation" id="reservationtime" class="form-control" value="08/01/2013 1:00 PM - 08/01/2013 1:30 PM" class="span4" />
-                                        </td>
-                                        <td style="width: 250px">
-                                            <input type="text" style="width: 200px" name="acisa" id="acisa" class="form-control" value="" class="span3" onchange="Check()" />
-                                        </td>
-                                        <td>
-                                            <button id="btn" class="btn btn-primary" type="button" href="#" onclick="redirectURL();">Download Data</button>
-                                        </td>
-                                    </tbody>
-                                    <div id="loadhere"></div>
-                                </table>
-                                <hr/>
-                                <p>
-                                    Don't know the ACISA sensors location or how they work? See the <a>Map</a> below or read the <a href="#dscpt" onclick="$('html, body').animate({scrollTop: $('#dscpt').offset().top}, 2000);">Descriptions</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-
-            <script type="text/javascript">
-            $(document).ready(function() {
-                $('#reservationtime').daterangepicker({
-                    timePicker: true,
-                    timePickerIncrement: 30,
-                    format: 'MM/DD/YYYY h:mm A'
-                }, function(start, end) {
-                    console.log(start.toISOString(), end.toISOString());
-                });
-            });
-            </script>
-        </div>
-    </div>
-    <h4>Traffic Sensor Stations</h4>
-    <div class="well">
-        <form class="form-horizontal">
-            <fieldset>
-                <div class="control-group">
-                    <div class="controls">
-                        <div id="map-canvas"></div>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-
-</div>
-
 <div class="span12">
     <span class="anchor" id="dscpt"></span>
-    <h1><b>More Information</b>
+    <h1><b>Project Description</b>
     </h1>
     <hr/>
     <div id="descript" class="span12">
         <div class="well">
             <h5>
-             Traffic sensors are placed on mid block of the intersection described below. Speed is shown -1 when not available.
+             In 2013, DDOT completed the installation of 142 vehicle counting station in DC arterials. The stations collect data every minute in real time and send the information to our Traffic Management Center.
+             All the sensors are located on mid -block and provide speed, volume and occupancy Speed is shown -1 when not available.
             </h5>
             <a onclick="displayTable();">
                 <p id="clickingmore">More</p>
@@ -971,6 +864,120 @@ function displayTable() {
         </div>
     </div>
 </div>
+
+
+<div class="span12" style="visibility: visible;">
+    <span class="anchor" id="abtuser"></span>
+    <h1><b>Please fill in your details</b>
+    </h1>
+    <hr/>
+    <h4>Provide your details about your agency and how you plan to use the data for your work. (Fields marked by
+        <asterisk>*</asterisk>are required.)</b>:</h4>
+    <div class="well" style="overflow: auto">
+        <form class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="inputUname">
+                    <asterisk>*</asterisk>Name:</label>
+                <div class="controls">
+                    <input type="text" class="form-control" id="inputUname" placeholder="Name" name="uname" required="true">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputAgency">
+                    <asterisk>*</asterisk>Agency:</label>
+                <div class="controls">
+                    <input type="text" class="form-control" id="inputAgency" placeholder="Agency" name="uagen">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputComment">
+                    <asterisk>*</asterisk>Purpose for downloading data:</label>
+                <div class="controls">
+                    <textarea class="form-control" id="inputComment" rows="5" cols="80%" name="ucomment"></textarea>
+                </div>
+            </div>
+        </form>
+        <button id="btn_submit" class="btn btn-primary" style="margin: 10px;" data-toggle="modal">Submit</button>
+    </div>
+</div>
+
+<div class="span12">
+    <span class="anchor" id="download"></span>
+    <h1><b>Data Download</b>
+    </h1>
+    <hr/>
+    <div id="StopSign" class="span12" style="display: block;">
+        <div class="well">
+            <h4>
+                The data form is available upon filling details in above section.
+            </h4>
+        </div>
+    </div>
+    <div id="GoSign" class="span12" style="display: none;">
+        <h4>Data Downloading Options</h4>
+        <div class="well">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="control-group">
+                        <div class="controls">
+                            <div class="input-prepend input-group">
+                                <table>
+                                    <thead>
+                                        <th>Choose Start and End times:</th>
+                                        <th>ACISA No.</th>
+                                    </thead>
+                                    <tbody>
+                                        <td style="width: 350px">
+                                            <input type="text" style="width: 300px;" name="reservation" id="reservationtime" class="form-control" value="08/01/2013 1:00 PM - 08/01/2013 1:30 PM" class="span4" />
+                                        </td>
+                                        <td style="width: 250px">
+                                            <input type="text" style="width: 200px" name="acisa" id="acisa" class="form-control" value="" class="span3" onchange="Check()" />
+                                        </td>
+                                        <td>
+                                            <button id="btn" class="btn btn-primary" type="button" href="#" onclick="redirectURL();">Download Data</button>
+                                        </td>
+                                    </tbody>
+                                    <div id="loadhere"></div>
+                                </table>
+                                <hr/>
+                                <p>
+                                    Don't know the ACISA sensors location or how they work? See the <a>Map</a> below or read the <a href="#dscpt" onclick="$('html, body').animate({scrollTop: $('#dscpt').offset().top}, 2000);">Descriptions</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <script type="text/javascript">
+            $(document).ready(function() {
+                $('#reservationtime').daterangepicker({
+                    timePicker: true,
+                    timePickerIncrement: 30,
+                    format: 'MM/DD/YYYY h:mm A'
+                }, function(start, end) {
+                    console.log(start.toISOString(), end.toISOString());
+                });
+            });
+            </script>
+        </div>
+    </div>
+    <h4>Traffic Sensor Stations</h4>
+    <div class="well">
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <div class="controls">
+                        <div id="map-canvas"></div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+</div>
+
+
 
 <div class="span12">
     <span class="anchor" id="contact"></span>
