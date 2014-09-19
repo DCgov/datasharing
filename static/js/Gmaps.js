@@ -4,6 +4,7 @@
 var ACISAs;
 var InfoWin;
 var IlliList = [];
+var markers = {};
 
 var TargetACISAs = [
     "5043",
@@ -206,7 +207,6 @@ function setMarkers(map, locations) {
 
 function createMarker(myLatLng, ACISAs, map, image, shape) {
     var marker = new google.maps.Marker({
-        id: 'IC_' + ACISAs[3],
         position: myLatLng,
         map: map,
         icon: image,
@@ -225,6 +225,7 @@ function createMarker(myLatLng, ACISAs, map, image, shape) {
         });
         InfoWin.open(map, marker);
     });
+    markers['IC_' + ACISAs[3]] = marker;
     return marker;
 }
 
@@ -234,6 +235,19 @@ function pickme(AciNum) {
             return;
         }
     }
+
+    var image = {
+        url: 'img/lilMarker_slct.png',
+        // This marker is 20 pixels wide by 32 pixels tall.
+        size: new google.maps.Size(19, 19),
+        // The origin for this image is 0,0.
+        origin: new google.maps.Point(0, 0),
+        // The anchor for this image is the base of the flagpole at 0,32.
+        anchor: new google.maps.Point(0, 19)
+    };
+
+    markers['IC_' + AciNum].setIcon(image);
+
     selectedACISAs.push(AciNum.toString());
     document.getElementById("acisa").value = selectedACISAs.join();
 }
@@ -243,6 +257,19 @@ function kickme(AciNum) {
     if (index > -1) {
         selectedACISAs.splice(index, 1);
     }
+
+    var image = {
+        url: 'img/lilMarker.png',
+        // This marker is 20 pixels wide by 32 pixels tall.
+        size: new google.maps.Size(19, 19),
+        // The origin for this image is 0,0.
+        origin: new google.maps.Point(0, 0),
+        // The anchor for this image is the base of the flagpole at 0,32.
+        anchor: new google.maps.Point(0, 19)
+    };
+
+    markers['IC_' + AciNum].setIcon(image);
+
     document.getElementById("acisa").value = selectedACISAs.join();
 }
 

@@ -5,13 +5,22 @@ function redirectURL() {
     // loading_indicator_trigger();
     var InACI;
     InACI = document.getElementById("acisa").value;
-    if (InACI == "") {
-        $('#nullacisa').modal('toggle');
-        $('html, body').animate({
-            scrollTop: $("#download").offset().top
-        }, 2000);
+
+    var Username = $("#inputUname").val();
+    var Useragen = $("#inputAgency").val();
+    var Usercomm = $("#inputComment").val();
+
+    if (Username == "" || Useragen == "" || Usercomm == ""){
+        $('#NoAgen').modal('toggle');
         return;
     }
+
+    $.post("goRequest", {
+        uname: Username,
+        uagen: Useragen,
+        ucomment: Usercomm
+    }, function(data, status) {});
+
     var listing = InACI.split(',');
     for (var i = 0; i < listing.length; i++) {
         if (TargetACISAs.indexOf(listing[i]) < 0) {
@@ -49,10 +58,22 @@ function redirectURL_inc() {
 }
 
 $(document).ready(function() {
-
     // User information checking functions.
-    $("#btn_submit").click(function() {
-        var Username = $("#inputUname").val();
+    $("#btn").click(function() {
+        var InACI;
+        InACI = document.getElementById("acisa").value;
+        if (InACI == "") {
+            $('#nullacisa').modal('toggle');
+            $('html, body').animate({
+                scrollTop: $("#download").offset().top
+            }, 2000);
+            return;
+        }
+        $('#NoName').modal('toggle');
+        $('html, body').animate({
+            scrollTop: $("#download").offset().top
+        }, 2000);
+        /* var Username = $("#inputUname").val();
         var Useragen = $("#inputAgency").val();
         var Usercomm = $("#inputComment").val();
         if (Username == "") {
@@ -77,18 +98,18 @@ $(document).ready(function() {
             return;
         }
         $.post("goRequest", {
-                uname: Username,
-                uagen: Useragen,
-                ucomment: Usercomm
-            },
-            function(data, status) {
-                $("#StopSign").css("display", "none");
-                $("#GoSign").css("display", "block");
-                $('#Complete').modal('toggle');
-                $('html, body').animate({
-                    scrollTop: $("#download").offset().top
-                }, 1000);
-            });
+            uname: Username,
+            uagen: Useragen,
+            ucomment: Usercomm
+        },
+        function(data, status) {
+            $("#StopSign").css("display", "none");
+            $("#GoSign").css("display", "block");
+            $('#Complete').modal('toggle');
+            $('html, body').animate({
+                scrollTop: $("#download").offset().top
+            }, 1000);
+        }); */
     });
 });
 
@@ -863,55 +884,19 @@ function displayTable() {
     </div>
 </div>
 
-
-<div class="span12" style="visibility: visible;">
-    <span class="anchor" id="abtuser"></span>
-    <h1><b>Please fill in your details</b>
-    </h1>
-    <hr/>
-    <h4>Provide your details about your agency and how you plan to use the data for your work. (Fields marked by
-        <asterisk>*</asterisk>are required.)</b>:</h4>
-    <div class="well" style="overflow: auto">
-        <form class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label" for="inputUname">
-                    <asterisk>*</asterisk>Name:</label>
-                <div class="controls">
-                    <input type="text" class="form-control" id="inputUname" placeholder="Name" name="uname" required="true">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="inputAgency">
-                    <asterisk>*</asterisk>Agency:</label>
-                <div class="controls">
-                    <input type="text" class="form-control" id="inputAgency" placeholder="Agency" name="uagen">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="inputComment">
-                    <asterisk>*</asterisk>Purpose for downloading data:</label>
-                <div class="controls">
-                    <textarea class="form-control" id="inputComment" rows="5" cols="80%" name="ucomment"></textarea>
-                </div>
-            </div>
-        </form>
-        <button id="btn_submit" class="btn btn-primary" style="margin: 10px;" data-toggle="modal">Submit</button>
-    </div>
-</div>
-
 <div class="span12">
     <span class="anchor" id="download"></span>
     <h1><b>Data Download</b>
     </h1>
     <hr/>
-    <div id="StopSign" class="span12" style="display: block;">
+    <div id="StopSign" class="span12" style="display: none;">
         <div class="well">
             <h4>
                 The data form is available upon filling details in above section.
             </h4>
         </div>
     </div>
-    <div id="GoSign" class="span12" style="display: none;">
+    <div id="GoSign" class="span12" style="display: block;">
         <h4>Data Downloading Options</h4>
         <div class="well">
             <form class="form-horizontal">
@@ -932,7 +917,7 @@ function displayTable() {
                                             <input type="text" style="width: 200px" name="acisa" id="acisa" class="form-control" value="" class="span3" onchange="Check()" />
                                         </td>
                                         <td>
-                                            <button id="btn" class="btn btn-primary" type="button" href="#" onclick="redirectURL();">Download Data</button>
+                                            <button id="btn" class="btn btn-primary" type="button" href="#"">Download Data</button>
                                         </td>
                                     </tbody>
                                     <div id="loadhere"></div>

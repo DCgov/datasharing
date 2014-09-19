@@ -111,13 +111,28 @@
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Close</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">User Information Missing</h4>
+                    <h2 class="modal-title" id="myModalLabel">Please fill in your details</h2>
                 </div>
                 <div class="modal-body">
-                    User Name is required! Please double check! 
+                    <h4>Provide your details about your agency and how you plan to use the data for your work. (Fields marked by <asterisk>*</asterisk> are required.):</h4>
+                    <label class="control-label" for="inputUname">
+                        <asterisk>*</asterisk>Name:</label>
+                    <div class="controls">
+                        <input type="text" class="form-control" id="inputUname" placeholder="Name" name="uname" required="true">
+                    </div>
+                    <label class="control-label" for="inputAgency">
+                        <asterisk>*</asterisk>Agency:</label>
+                    <div class="controls">
+                        <input type="text" class="form-control" id="inputAgency" placeholder="Agency" name="uagen">
+                    </div>
+                    <label class="control-label" for="inputComment">
+                        <asterisk>*</asterisk>Purpose for downloading data:</label>
+                    <div class="controls">
+                        <textarea class="form-control" id="inputComment" rows="5" cols="80%" name="ucomment"></textarea>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Alright</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redirectURL();">Submit</button>
                 </div>
             </div>
         </div>
@@ -132,13 +147,13 @@
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Close</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">User Information Missing</h4>
+                    <h3 class="modal-title" id="myModalLabel">Personal Information Incomplete. </h3>
                 </div>
                 <div class="modal-body">
-                    User Agency is required! Please double check! 
+                    I'm Sorry, Some of your Information is missing.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Alright</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Let's Do This Again</button>
                 </div>
             </div>
         </div>
