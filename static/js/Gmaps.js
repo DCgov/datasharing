@@ -206,6 +206,7 @@ function setMarkers(map, locations) {
 
 function createMarker(myLatLng, ACISAs, map, image, shape) {
     var marker = new google.maps.Marker({
+        id: 'IC_' + ACISAs[3],
         position: myLatLng,
         map: map,
         icon: image,
