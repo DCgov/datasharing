@@ -212,7 +212,7 @@ function createMarker(myLatLng, ACISAs, map, image, shape) {
         shape: shape,
         title: ACISAs[3],
         zIndex: ACISAs[2],
-        Infocontent: '<h2>ACISA No. ' + ACISAs[3] + '</h2>' + '<div class="btn-group"><button id="btn_' + ACISAs[3] + '" class="btn btn-primary" type="button" onclick="pickme(' + ACISAs[3] + ');">Pick Me!</button><button id="btn_' + ACISAs[3] + '" class="btn" type="button" onclick="kickme(' + ACISAs[3] + ');">Kick Me!</button></div>'
+        Infocontent: '<h5>ACISA No. ' + ACISAs[3] + '</h5>' + '<div class="btn-group"><button id="btn_' + ACISAs[3] + '" class="btn btn-primary" type="button" onclick="pickme(' + ACISAs[3] + ');">Pick Me!</button><button id="btn_' + ACISAs[3] + '" class="btn" type="button" onclick="kickme(' + ACISAs[3] + ');">Kick Me!</button></div>'
     });
 
     google.maps.event.addListener(marker, 'click', function() {
